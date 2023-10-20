@@ -1,14 +1,14 @@
-FROM ruby:3.0-alpine as builder
+FROM ruby:3.2.0-alpine as builder
 
 ARG BUILD_PACKAGES="build-base libxml2 libxslt git"
 ARG DEV_PACKAGES="libxml2-dev libxslt-dev yaml-dev postgresql-dev nodejs npm yarn imagemagick-dev libwebp-dev libpng-dev tiff-dev gcompat"
 ARG RUBY_PACKAGES="tzdata"
 
-ARG REPLACE_CHINA_MIRROR="true"
+ARG REPLACE_CHINA_MIRROR="false"
 ARG ORIGINAL_REPO_URL="dl-cdn.alpinelinux.org"
-ARG MIRROR_REPO_URL="mirrors.ustc.edu.cn"
-ARG RUBYGEMS_SOURCE="https://gems.ruby-china.com/"
-ARG NPM_REGISTRY="https://registry.npm.taobao.org"
+ARG MIRROR_REPO_URL="mirrors.nhanhoa.com"
+ARG RUBYGEMS_SOURCE="https://rubygems.org/"
+ARG NPM_REGISTRY="https://registry.npmjs.org/"
 ARG RUBY_GEMS="bundler"
 ARG APP_ROOT="/app"
 
@@ -51,40 +51,40 @@ RUN SECRET_TOKEN=precompile_placeholder bin/rails assets:precompile
 # Remove folders not needed in resulting image
 RUN rm -rf docker node_modules tmp/cache spec .browserslistrc babel.config.js \
     package.json postcss.config.js yarn.lock && \
-    cd /app/vendor/bundle/ruby/3.0.0 && \
+    cd /app/vendor/bundle/ruby/3.2.0 && \
       rm -rf cache/*.gem && \
       find gems/ -name "*.c" -delete && \
       find gems/ -name "*.o" -delete
 
 ##################################################################################
 
-FROM ruby:3.0-alpine
+FROM ruby:3.2.0-alpine
 
 ARG BUILD_DATE
 ARG VCS_REF
 ARG TAG
 
-ARG ZEALOT_VERSION="5.1.0"
-ARG REPLACE_CHINA_MIRROR="true"
+ARG ZEALOT_VERSION="5.0.1"
+ARG REPLACE_CHINA_MIRROR="false"
 ARG ORIGINAL_REPO_URL="dl-cdn.alpinelinux.org"
-ARG MIRROR_REPO_URL="mirrors.ustc.edu.cn"
-ARG RUBYGEMS_SOURCE="https://gems.ruby-china.com/"
-ARG PACKAGES="tzdata curl logrotate postgresql-client postgresql-dev imagemagick imagemagick-dev libwebp-dev libpng-dev tiff-dev openssl openssl-dev caddy gcompat"
+ARG MIRROR_REPO_URL="mirrors.nhanhoa.com"
+ARG RUBYGEMS_SOURCE="https://rubygems.org/"
+ARG PACKAGES="tzdata curl logrotate postgresql-dev imagemagick-dev libwebp-dev libpng-dev tiff-dev postgresql-client openssl openssl-dev caddy gcompat"
 ARG RUBY_GEMS="bundler"
 ARG APP_ROOT=/app
 ARG S6_OVERLAY_VERSION="2.2.0.3"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.title="Zealot" \
+LABEL org.opencontainers.image.title="Zealot - Cusstom" \
       org.opencontainers.image.description="Over The Air Server for deployment of Android and iOS apps" \
-      org.opencontainers.image.url="https://zealot.ews.im/" \
-      org.opencontainers.image.authors="icyleaf <icyleaf.cn@gmail.com>" \
-      org.opencontainers.image.source="https://github.com/tryzealot/zealot" \
+      org.opencontainers.image.url="https://github.com/maichanchinh/zealot" \
+      org.opencontainers.image.authors="ChinhMC <maichanchinhls@gmail.com>" \
+      org.opencontainers.image.source="https://github.com/maichanchinh/zealot" \
       org.opencontainers.image.created=$BUILD_DATE \
       org.opencontainers.image.revision=$VCS_REF \
       org.opencontainers.image.version=$ZEALOT_VERSION
 
-ENV TZ="Asia/Shanghai" \
+ENV TZ="Asia/Ho_Chi_Minh" \
     PS1="$(whoami)@$(hostname):$(pwd)$ " \
     DOCKER_TAG="$TAG" \
     BUNDLE_APP_CONFIG="$APP_ROOT/.bundle" \
