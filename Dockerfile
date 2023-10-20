@@ -67,9 +67,9 @@ ARG TAG
 ARG ZEALOT_VERSION="5.0.1"
 ARG REPLACE_CHINA_MIRROR="false"
 ARG ORIGINAL_REPO_URL="dl-cdn.alpinelinux.org"
-ARG MIRROR_REPO_URL="mirrors.nhanhoa.com"
-ARG RUBYGEMS_SOURCE="https://rubygems.org/"
-ARG PACKAGES="tzdata curl logrotate postgresql-dev imagemagick-dev libwebp-dev libpng-dev tiff-dev postgresql-client openssl openssl-dev caddy gcompat"
+ARG MIRROR_REPO_URL="mirrors.ustc.edu.cn"
+ARG RUBYGEMS_SOURCE="https://gems.ruby-china.com/"
+ARG PACKAGES="tzdata curl logrotate postgresql-client postgresql-dev imagemagick imagemagick-dev libwebp-dev libpng-dev tiff-dev openssl openssl-dev caddy gcompat"
 ARG RUBY_GEMS="bundler"
 ARG APP_ROOT=/app
 ARG S6_OVERLAY_VERSION="2.2.0.3"
