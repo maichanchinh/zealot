@@ -11,7 +11,7 @@ module SettingHelper
     def builtin_schemes
       [
         t('settings.preset_schemes.beta', default: nil),
-        t('settings.preset_schemes.adhoc', default: nil),
+        # t('settings.preset_schemes.adhoc', default: nil),
         t('settings.preset_schemes.production', default: nil)
       ].compact
     end
