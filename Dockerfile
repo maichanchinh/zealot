@@ -100,24 +100,25 @@ RUN set -ex && \
       gem sources --add $RUBYGEMS_SOURCE --remove https://rubygems.org/; \
     fi && \
     apk --update --no-cache add $PACKAGES && \
-    gem install $RUBY_GEMS && \
-    echo "Setting variables for ${TARGETARCH}" && \
-    case "$TARGETARCH" in \
-    "amd64") \
-      S6_OVERLAY_ARCH="amd64" \
-    ;; \
-    "arm64") \
-      S6_OVERLAY_ARCH="aarch64" \
-    ;; \
-    "linux/arm/v7" | "arm") \
-      S6_OVERLAY_ARCH="arm" \
-    ;; \
-    *) \
-        echo "Doesn't support $TARGETARCH architecture" \
-        exit 1 \
-    ;; \
-    esac && \
-    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz | tar xvzf - -C /
+    gem install $RUBY_GEMS
+    # && \
+    # echo "Setting variables for ${TARGETARCH}" && \
+    # case "$TARGETARCH" in \
+    # "amd64") \
+    #   S6_OVERLAY_ARCH="amd64" \
+    # ;; \
+    # "arm64") \
+    #   S6_OVERLAY_ARCH="aarch64" \
+    # ;; \
+    # "linux/arm/v7" | "arm") \
+    #   S6_OVERLAY_ARCH="arm" \
+    # ;; \
+    # *) \
+    #     echo "Doesn't support $TARGETARCH architecture" \
+    #     exit 1 \
+    # ;; \
+    # esac && \
+    # curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz | tar xvzf - -C /
 
 WORKDIR $APP_ROOT
 
