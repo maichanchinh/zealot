@@ -16,10 +16,19 @@ class App < ApplicationRecord
     Rails.cache.fetch("app_#{id}_recently_release") do
       return unless schcmes_ids = schemes.select(:id).map(&:id)
       return unless channel_ids = Channel.select(:id).where(schemes: schcmes_ids).map(&:id)
-      return unless release = Release.where(channels: channel_ids).last
+      # return unless release = Release.where(channels: channel_ids).last
 
+      return unless release = Release
+                    .select('releases.*, channels.key AS channel_key')
+                    .joins(:channel).where(channels: { id: channel_ids }).last
       release
     end
+  end
+
+  def recently_channel
+    recently_release = recently_release()
+
+    { channel_id: recently_release.channel_id, channel_key:  Channel.select(:key).where(id: recently_release.channel_id) }
   end
 
   def total_schemes
