@@ -23,7 +23,9 @@ ruby:
           / = f.simple_fields_for :scheme_attributes do |n|
           /   = n.input :name, as: :check_boxes, collection: preset_schemes, checked: @schemes, required: false
           = f.simple_fields_for :scheme_attributes do |n|
-            = n.input :name, as: :check_boxes, collection: preset_schemes, checked: @schemes, required: false
+            - preset_schemes.each do |preset_scheme|
+              - checked = preset_scheme == t('api.apps.upload.create.adhoc')
+              = n.input :name, as: :check_boxes, collection: [preset_scheme], input_html: { checked: checked }, required: false if preset_scheme == t('api.apps.upload.create.adhoc')
           = f.simple_fields_for :channel_attributes do |n|
             = n.input :name, as: :check_boxes, collection: preset_channels, checked: @channels, required: false
         = f.button :submit
