@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Đặt biến version
-version="6.0.3"
+version="6.0.4"
 
 # Build Docker image
 docker build -t zealot:$version -t 192.168.1.59:5000/zealot:$version -t 192.168.1.59:5000/zealot:latest .
