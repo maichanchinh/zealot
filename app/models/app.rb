@@ -27,8 +27,8 @@ class App < ApplicationRecord
 
   def recently_channel
     recently_release = recently_release()
-
-    { channel_id: recently_release.channel_id, channel_key:  Channel.select(:key).where(id: recently_release.channel_id) }
+    channel = Channel.find_by(id: recently_release.channel_id)
+    { channel_id: recently_release.channel_id, channel_key:  channel.key }
   end
 
   def total_schemes
