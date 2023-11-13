@@ -25,12 +25,6 @@ class App < ApplicationRecord
     end
   end
 
-  def recently_channel
-    recently_release = recently_release()
-    channel = Channel.find_by(id: recently_release.channel_id)
-    { channel_id: recently_release.channel_id, channel_key:  channel.key }
-  end
-
   def total_schemes
     schemes.size
   end
