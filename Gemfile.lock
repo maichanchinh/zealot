@@ -185,7 +185,11 @@ GEM
     graphiql-rails (1.9.0)
       railties
       sprockets-rails
+<<<<<<< HEAD
     graphql (2.2.3)
+=======
+    graphql (2.1.7)
+>>>>>>> 602fa29d (chore(deps): bump graphql from 2.1.5 to 2.1.7)
       racc (~> 1.4)
     hashie (5.0.0)
     health_check (3.1.0)
@@ -589,7 +593,11 @@ DEPENDENCIES
   friendly_id (~> 5.5.1)
   gitlab_omniauth-ldap (~> 2.2.0)
   graphiql-rails
+<<<<<<< HEAD
   graphql (~> 2.2.3)
+=======
+  graphql (~> 2.1.7)
+>>>>>>> 602fa29d (chore(deps): bump graphql from 2.1.5 to 2.1.7)
   health_check (~> 3.1.0)
   improved_jenkins_client (~> 1.6.7)
   jb (~> 0.8.2)
