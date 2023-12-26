@@ -610,7 +610,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pghero (~> 3.4.0)
   plist (~> 3.7.0)
-  propshaft (= 0.7.0)
+  propshaft (= 0.8.0)
   pry-rails
   pry-rescue
   puma (~> 6.4.0)
