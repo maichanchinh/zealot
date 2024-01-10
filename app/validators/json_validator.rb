@@ -5,9 +5,6 @@ class JsonValidator < ActiveModel::EachValidator
     @format = options.fetch(:format, nil)
     @allow_value_empty = ActiveModel::Type::Boolean.new.cast(options.fetch(:value_allow_empty, false))
 
-    @format = options.fetch(:format, nil)
-    @allow_value_empty = ActiveModel::Type::Boolean.new.cast(options.fetch(:value_allow_empty, false))
-
     super
   end
 
