@@ -6,7 +6,14 @@ class AppIconUploader < ApplicationUploader
   process convert: :png, if: :not_png?
 
   def store_dir
-    "#{base_store_dir}/apps/a#{model.app.id}/r#{model.id}/icons"
+    app_id = model&.app&.id
+    release_id = model&.id
+  
+    if app_id && release_id
+      "#{base_store_dir}/apps/a#{app_id}/r#{release_id}/icons"
+    else
+      ""
+    end
   end
 
   def content_type_allowlist
